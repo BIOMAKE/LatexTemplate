@@ -1,0 +1,200 @@
+%Document type
+\documentclass[11pt, titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{appendix}
+\usepackage{nameref}
+
+%Math and graph
+\usepackage{amsmath}
+\usepackage{amsfonts} % for mathbb
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage{siunitx}
+\usepackage{chemformula}
+\usepackage{svg}
+\usepackage{xcolor}
+%Author package
+\usepackage{authblk}
+
+%%%%%%%%%%%%%%%%%%%%% Reference Packages %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend = biber,
+            natbib = true,
+            style = authoryear,
+            sorting = nyt,
+            sortcites = true,
+            citestyle = authoryear,
+            maxbibnames = 6,
+            minbibnames = 6,
+            maxcitenames = 2,
+            mincitenames = 1,
+            hyperref = true,
+            firstinits = true,
+            terseinits = true,
+            abbreviate = true,
+            texencoding = utf8,
+            bibencoding = utf8,
+            uniquename = false,
+            uniquelist = false]{biblatex}
+\addbibresource{reference.bib} %add a new reference bib file to the main tex
+
+%%%%%%%%%%% Define Article Reference %%%%%%%%%%%%%%%%
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
+%Define article style
+\DeclareBibliographyDriver{article}{%
+  \printnames{author}
+  \newunit\newblock
+  \printfield{title}
+  \newunit\newblock
+  \printfield{journaltitle}
+  \setunit{}
+  \printfield{year}
+  \setunit{\addsemicolon\space}
+  \printfield{volume}
+  \setunit{\addcolon}
+  \printfield{pages}
+  \newunit
+  \printfield{doi}
+  \finentry}
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[article]{journaltitle}{#1\isdot}
+\DeclareFieldFormat[article]{doi}{\url{#1}}
+\renewcommand*{\revsdnamepunct}{}
+\renewcommand*{\nameyeardelim}{\addspace}
+
+%Define inbook style
+\DeclareBibliographyDriver{inbook}{
+    \printnames{author}
+    \newunit\newblock
+    \printfield{title}
+    \newunit\newblock
+    In:
+    \printnames{editor}
+    \addcomma\addspace editors.
+    \newunit
+    \printfield{booktitle}
+    \newunit
+    \printlist{location}
+    \setunit{\addcolon\addspace}
+    \printlist{publisher}
+    \setunit{\addsemicolon\addspace}
+    \printfield{year}
+    \newunit
+    \printfield{pages}
+    \newunit
+    \printfield{doi}
+    \finentry
+}
+\DeclareFieldFormat[inbook]{title}{#1}
+\DeclareFieldFormat[inbook]{booktitle}{#1}
+\DeclareFieldFormat[inbook]{pages}{p. #1}
+
+%reference misc style
+\DeclareBibliographyDriver{misc}{
+    \printnames{author}
+    \setunit{\addcomma\addspace}
+    \printfield{title}
+    \newunit
+    \printfield{url}
+    \setunit{\addcomma\addspace}
+    \printfield{year}
+    \setunit{\addspace}
+    \printfield{note}
+    \finentry
+}
+\DeclareFieldFormat[misc]{title}{#1}
+\DeclareFieldFormat[misc]{url}{\url{#1}}
+\DeclareFieldFormat[misc]{note}{(#1)}
+
+
+
+%Algorithm package
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+%Table package
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+
+\usepackage{tabularx}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1}
+\providecommand{\abbreviations}[1]{\textbf{\textit{Abbreviations---}} #1}
+
+
+
+% Package for external url links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor=blue,
+}
+
+\urlstyle{same}
+
+
+
+
+%Column Space
+\setlength{\intextsep}{6pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Begin of Document %%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%% Title Page Section %%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\title{} % add your own title here
+
+%Author 
+\author[a,*]{} % add author name
+\author[a]{}
+
+%Institutions
+\affil[a]{}
+\affil[*]{}
+
+%Date and font
+\date{}
+\setcounter{Maxaffil}{0}
+\renewcommand\Affilfont{\itshape\small}
+
+%make a title
+\maketitle
+\end{titlepage}
+
+
+\section{}
+\subsection{}
+\subsubsection{}
+
+
+
+
+
+% Note: put the bib style and bib file you use here.
+\newpage
+\printbibliography
+
+
+\end{document}
